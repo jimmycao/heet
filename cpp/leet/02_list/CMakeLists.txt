@@ -1,0 +1,6 @@
+# add_executable(leet_203 leet_203.cpp)
+# add_executable(leet_707 leet_707.cpp)
+# add_executable(leet_206 leet_206.cpp)
+# add_executable(leet_024 leet_024.cpp)
+# add_executable(leet_019 leet_019.cpp)
+add_executable(leet_142 leet_142.cpp)
