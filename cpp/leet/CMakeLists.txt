@@ -3,12 +3,14 @@
 # add_subdirectory("03_hash")
 # add_subdirectory("04_str")
 # add_subdirectory("05_queue_stack")
-#add_subdirectory("06_binary_tree")
-add_subdirectory("07_back_tracking")
+# add_subdirectory("06_binary_tree")
 
 
 
 
-# add_subdirectory("10_greedy")
-# add_subdirectory("11_dp")
+add_subdirectory("31_back_tracking")
+# add_subdirectory("32_greedy")
+# add_subdirectory("33_dp")
+
+
 # add_subdirectory("others")

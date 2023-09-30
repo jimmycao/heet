@@ -1,1 +1,0 @@
-add_executable(chunk_allocator_test chunk_allocator_test.cpp)

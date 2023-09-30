@@ -1,7 +1,4 @@
-//
-// Created by c00770977 on 2023/5/3.
-//
-#include "../../utils/tools.h"
+#include "../utils/print_tools.h"
 
 class Solution2 {
 private:
