@@ -10,7 +10,7 @@ class Solution1 {  // 递归
 public:
     int Fabonacci(int n) {
         if (n <= 1) {
-            return 1;
+            return n;
         }
 
         return Fabonacci(n-2) + Fabonacci(n-1);
@@ -31,7 +31,7 @@ public:
         }
 
         if (n <= 1) {
-            memo[n] = 1;
+            memo[n] = n;
         } else {
             memo[n] = Fab(n-1, memo) + Fab(n-2, memo);
         }
@@ -45,7 +45,7 @@ public:
     int Fabonacci(int n) {
         vector<int> memo(n+1, -1);
 
-        memo[0] = 1;
+        memo[0] = 0;
         memo[1] = 1;
         for (int i = 2; i <=n; ++i) {
             memo[i] = memo[i-2] + memo[i-1];
