@@ -2,77 +2,64 @@
 #include "../utils/print_tools.h"
 
 /*
- * 最有子结构  optimal substructure
+Those who cannot remember the past are condemned to repeat it.
+ Dynamic Programming
  */
-class Solution1 {  // 递归法
+
+class Solution1 {  // 递归
 public:
-    int cut(vector<int>& prices, int len) {
-        if (len == 0) {
-            return 0;
+    int Fabonacci(int n) {
+        if (n <= 1) {
+            return 1;
         }
 
-        int R = INT_MIN;
-        for (size_t i = 1; i <= len; ++i) {  // i从1开始切，每切一次，len = len - i
-            R = std::max(R, prices[i-1] + cut(prices, len -i ));
-            // max(r, R_1 + R_len-1, R_2 + R_len-2, ..., R_len-1 + R_1)
-        }
-        return R;
+        return Fabonacci(n-2) + Fabonacci(n-1);
     }
 };
 
 
-class Solution2 {  // 递归 + memo 法
+class Solution { // 递归 + memo
 public:
-    int cut(vector<int>& prices, int len) {
-        vector<int> memo(len+1, -1);
-        return cutWithMemo(prices, len, memo);
+    int Fabonacci(int n) {
+        vector<int> memo(n+1, -1);
+        return Fab(n, memo);
     }
 
-    int cutWithMemo(vector<int>& prices, int len, vector<int>& memoOut) {
-        if (memoOut[len] >= 0) {  // 如见已经有记录值，就直接使用
-            return memoOut[len];
+    int Fab(int n, vector<int>& memo) {
+        if (memo[n] != -1) {
+            return memo[n];
         }
 
-        int R = -1;
-
-        if (len == 0) {
-            return 0;
+        if (n <= 1) {
+            memo[n] = 1;
         } else {
-            for (size_t i = 1; i <= len; i++) {
-                R = std::max(R,  prices[i - 1] + cutWithMemo(prices, len - i, memoOut));
-            }
+            memo[n] = Fab(n-1, memo) + Fab(n-2, memo);
         }
 
-        memoOut[len] = R; // 把每个长度的最大价值都记录下来
-//        std::cout << "len:" << len << ", R:" << R << std::endl;
-        return R;
+        return memo[n];
     }
 };
 
-class Solution {  // 自底向上 + DP + 记忆
+class Solution2 {  // bottom-up DP
 public:
-    int cut(vector<int>& prices, int len) {
-        vector<int> memo(len+1, 0);
+    int Fabonacci(int n) {
+        vector<int> memo(n+1, -1);
 
-        for (size_t i = 1; i <= len; ++i) {
-            int R = -1;
-            for (size_t j = 1; j <= i; j++) {
-                R = std::max(R, prices[j-1] + memo[i-j]);
-            }
-            memo[i] = R;
-            std::cout << "i:" << i << ", R:" << R << std::endl;
+        memo[0] = 1;
+        memo[1] = 1;
+        for (int i = 2; i <=n; ++i) {
+            memo[i] = memo[i-2] + memo[i-1];
         }
-        return memo[len];
+
+        return memo[n];
     }
 };
-
 
 void test1() {
-    vector<int> prices {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
-    int len = 10;
+    int n = 4;
 
     Solution sn;
-    int result = sn.cut(prices, len);
+    int result = sn.Fabonacci(n);
     std::cout << "result:" << result << std::endl;
 }
 
