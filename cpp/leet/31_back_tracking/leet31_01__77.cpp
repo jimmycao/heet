@@ -26,10 +26,6 @@ public:
 };
 
 class Solution {
-private:
-    std::vector<int> path_;
-    std::vector<std::vector<int>> result_;
-
 public:
     std::vector<std::vector<int>> combine(int n, int k) {
         backTracking(n, k, 1);
@@ -42,12 +38,17 @@ public:
             return;
         }
 
-        for (int i = startIdx; i <= n-(k-path_.size())+1; ++i) {
+        for (int i = startIdx; i <= n-(k-path_.size())+1; ++i) {  // 剪枝
+//        for (size_t i = startIdx; i <= n; ++i) {
             path_.push_back(i);
             backTracking(n, k, i+1);
             path_.pop_back();
         }
     }
+
+private:
+    std::vector<int> path_;
+    std::vector<std::vector<int>> result_;
 };
 
 void test1() {
@@ -70,6 +71,7 @@ void test2() {
 
 int main() {
     test1();
+    std::cout << "---" << std::endl;
     test2();
     return 0;
 }
