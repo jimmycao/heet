@@ -8,8 +8,8 @@ public:
 
         for (int c = 1; c < nums.size(); c++) {  // 遍历，把memo建立起来
             for (int p = 0; p < c; ++p) {
-                if (nums[c] > nums[p]) {
-                    memo[c] = std::max(memo[c], memo[p]+1);  // memo[c]基于之前的memo[p]去修改
+                if (nums[c] > nums[p] && memo[c] < memo[p] + 1 ) {
+                    memo[c] = memo[p] + 1;  // memo[c]基于之前的memo[p]去修改
                 }
             }
             std::cout << "c:" << c << ", memo[c]:" << memo[c] << std::endl;
