@@ -1,1 +1,0 @@
-add_executable(leet_001_34 leet_001_34.cpp)
