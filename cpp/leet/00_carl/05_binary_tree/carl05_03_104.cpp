@@ -2,27 +2,21 @@
 
 #include "../../utils/tree.h"
 
-class Solution {
+class Solution1 {
 public:
-    int minDepth(TreeNode *root) {
+    int maxDepth(TreeNode* root) {
         if (!root) {
             return 0;
         }
 
         queue<TreeNode*> myQueue;
         myQueue.push(root);
-
-        int step = 1;
+        int step = 0;
         while (!myQueue.empty()) {
             size_t size = myQueue.size();
             for (int i = 0; i < size; i++) {
                 auto tmp = myQueue.front();
                 myQueue.pop();
-
-                if (!tmp->left && !tmp->right) {
-                    return step;
-                }
-
                 if (tmp->left) {
                     myQueue.push(tmp->left);
                 }
@@ -32,33 +26,24 @@ public:
             }
             step++;
         }
-
         return step;
     }
 };
 
-class Solution2 {
+class Solution {
 public:
-    int minDepth(TreeNode* root) {
-        return getMinDepth(root);
+    int maxDepth(TreeNode* root) {
+        return getHeight(root);
     }
 
-    int getMinDepth(TreeNode* node) {
+    //postOrder
+    int getHeight(TreeNode* node) {
         if (!node) {
             return 0;
         }
-
-        int left = getMinDepth(node->left);
-        int right = getMinDepth(node->right);
-
-        if (left == 0 && right != 0) {
-            return 1 + right;
-        }
-        if (left != 0 && right == 0) {
-            return 1 + left;
-        }
-
-        return 1 + min(left, right);
+        int leftH = getHeight(node->left);
+        int rightH = getHeight(node->right);
+        return 1 + std::max(leftH, rightH);
     }
 };
 
@@ -67,25 +52,12 @@ void test1() {
     TreeNode* root = new TreeNode(3, new TreeNode(9), twenty);
 
     Solution sn;
-    int result = sn.minDepth(root);
+    int result = sn.maxDepth(root);
     std::cout << "result:" << result << std::endl;
-    std::cout << ", expected:2" << std::endl;
-}
-
-void test2() {
-    TreeNode* five = new TreeNode(5, nullptr, new TreeNode(6));
-    TreeNode* four = new TreeNode(4, nullptr, five);
-    TreeNode* three = new TreeNode(3, nullptr, four);
-    TreeNode* two = new TreeNode(2, nullptr, three);
-
-    Solution sn;
-    int result = sn.minDepth(two);
-    std::cout << "result:" << result << std::endl;
-    std::cout << ", expected:5" << std::endl;
+    std::cout << ", expected:3" << std::endl;
 }
 
 int main() {
     test1();
-    test2();
     return 0;
 }
