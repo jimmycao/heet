@@ -1,0 +1,1 @@
+add_executable(carl05_01_226 carl05_01_226.cpp)
