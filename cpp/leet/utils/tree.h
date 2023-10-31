@@ -9,7 +9,6 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-
 vector<int> tranverse_tree_by_level(TreeNode* root)
 {
     vector<int> results;
@@ -17,17 +16,23 @@ vector<int> tranverse_tree_by_level(TreeNode* root)
     queue<TreeNode*> myQueue;
     myQueue.push(root);
     while (!myQueue.empty()) {
-        if (myQueue.front()->left) {
-            myQueue.push(myQueue.front()->left);
-        }
+        size_t size = myQueue.size();
+        for (int i = 0; i < size; i++) {
+            auto tmp = myQueue.front();
+            myQueue.pop();
+            if (!tmp) {
+                results.push_back(INT_MAX);
+            } else {
+                results.push_back(tmp->val);
+            }
 
-        if (myQueue.front()->right) {
-            myQueue.push(myQueue.front()->right);
+            if (tmp->left || tmp->right) {
+                myQueue.push(tmp->left);
+                myQueue.push(tmp->right);
+            }
         }
-
-        results.push_back(myQueue.front()->val);
-        myQueue.pop();
     }
 
     return results;
 }
+
