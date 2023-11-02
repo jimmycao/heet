@@ -9,8 +9,24 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+void tranverse_in_order(TreeNode* root, vector<int>& results)
+{
+    if (root->left) {
+        tranverse_in_order(root->left, results);
+    }
+    results.push_back(root->val);
+    if (root->right) {
+        tranverse_in_order(root->right, results);
+    }
+}
+
+
 vector<int> tranverse_tree_by_level(TreeNode* root)
 {
+    if (!root) {
+        return {};
+    }
+
     vector<int> results;
 
     queue<TreeNode*> myQueue;
@@ -26,7 +42,7 @@ vector<int> tranverse_tree_by_level(TreeNode* root)
                 results.push_back(tmp->val);
             }
 
-            if (tmp->left || tmp->right) {
+            if (tmp && (tmp->left || tmp->right)) {
                 myQueue.push(tmp->left);
                 myQueue.push(tmp->right);
             }
