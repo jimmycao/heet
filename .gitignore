@@ -3,4 +3,5 @@
 cpp/build
 *.exe
 cmake-build-debug
+*.pth
 
