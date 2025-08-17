@@ -13,7 +13,7 @@ class Solution1:
             print(f"start:{start}, duration:{duration}")
 
             tried_times = 0
-            while tried_times <= server_num:
+            while tried_times < server_num:
                 tried_times += 1
                 next_sid = next_sid if next_sid < server_num else next_sid % server_num
                 if server_available_time[next_sid] > start:
@@ -77,5 +77,5 @@ def test2():
     print(result)
 
 if __name__ == "__main__":
-    # test1()
-    test2()
+    test1()
+    # test2()

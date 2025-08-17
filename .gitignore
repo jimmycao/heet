@@ -1,9 +1,23 @@
 .vscode/
 .idea/
 cpp/build
+build/Debug
 *.exe
 cmake-build-debug
 *.pth
 *.gz
 *ubyte
+*dSYM
+a.out
+
+cpp/leet/00_carl/01_array_vector/carl01_01_34
+cpp/leet/00_carl/05_binary_tree/carl05_01_226
+cpp/leet/04_str/leet_151
+cpp/leet/04_str/leet_344
+cpp/leet/04_str/leet_459
+cpp/leet/04_str/leet_541
+cpp/leet/05_queue_stack/leet_1047
+cpp/leet/05_queue_stack/leet_347
+
+load_balance
 

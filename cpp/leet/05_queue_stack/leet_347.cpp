@@ -49,10 +49,10 @@ public:
             nodes.push_back(node);
         }
         
-        // std::sort(nodes.begin(), nodes.end(), [](Node& a, Node& b) {
-        //     return a.count > b.count;
-        // });
-        std::sort(nodes.begin(), nodes.end(), MyGreater());
+        std::sort(nodes.begin(), nodes.end(), [](Node& a, Node& b) {
+            return a.count > b.count;
+        });
+        // std::sort(nodes.begin(), nodes.end(), MyGreater());
 
         std::vector<int> result;
         for (int i = 0; i < k; ++i) {
