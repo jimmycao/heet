@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -O0 -Wall -g2 -ggdb -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/leet_008.dir/leet_008.cpp.o -o leet_008 
