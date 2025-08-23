@@ -1,11 +1,40 @@
 #include <vector>
 #include <iostream>
 #include <set>
+#include <unordered_map>
 #include <algorithm>
 
 #include "../../cpp/utils/str_tools.h"
 
 class Solution {
+public:
+    int longestConsecutive(std::vector<int>& nums) {
+        std::unordered_map<int, int> num2flag;
+        for (auto& num : nums) {
+            num2flag[num] = 1;
+        }
+
+        int longest = 0;
+        for (auto& p : num2flag) {
+            if (p.second) {
+                int value = p.first;
+                int length = 1;
+                for (int i = 1; num2flag.count(value-i) && num2flag[value-i]; i++) {
+                    length++;
+                    num2flag[value-i] = 0;
+                }
+                for (int i = 1; num2flag.count(value+i) && num2flag[value+i]; i++) {
+                    length++;
+                    num2flag[value+i] = 0;
+                }
+                longest = std::max(longest, length);
+            }
+        }
+        return longest;
+    }
+};
+
+class Solution1 {
 public:
     int longestConsecutive(std::vector<int>& nums) {
         if (nums.size() == 0) {
@@ -22,7 +51,7 @@ public:
 
         int longest = 1;
 
-        int prev = unique_nums[0];
+        int prev = unique_nums[0];  // 线性扫描
         int count = 1;
         for (int i = 1; i < unique_nums.size(); i++) {
             if (unique_nums[i] == prev + 1) {

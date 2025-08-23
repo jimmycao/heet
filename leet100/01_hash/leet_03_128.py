@@ -2,6 +2,34 @@ from typing import List
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        num2flag = {}
+        for num in nums:
+            num2flag[num] = 1
+
+        longest = 0
+
+        for num, flag in num2flag.items():
+            if flag:
+                length = 1
+
+                i = 1
+                while (num-i) in num2flag and num2flag[num-i]:
+                    length += 1
+                    num2flag[num-i] = 0  # 记得修改状态
+                    i += 1
+
+                i = 1
+                while (num+i) in num2flag and num2flag[num+i]:
+                    length += 1
+                    num2flag[num+i] = 0  # 记得修改状态
+                    i += 1
+
+                if length > longest:
+                    longest = length
+        return longest
+
+class Solution2:
+    def longestConsecutive(self, nums: List[int]) -> int:
         if len(nums) == 0:
             return 0
 
