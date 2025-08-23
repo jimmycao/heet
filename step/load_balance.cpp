@@ -3,7 +3,7 @@
 #include <algorithm>
 
 
-#include "../utils/str_tools.h"
+#include "../cpp/utils/str_tools.h"
 
 class Solution {
 public:

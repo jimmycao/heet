@@ -8,7 +8,7 @@ cmake-build-debug
 *.gz
 *ubyte
 *dSYM
-a.out
+a.out*
 
 cpp/leet/00_carl/01_array_vector/carl01_01_34
 cpp/leet/00_carl/05_binary_tree/carl05_01_226
