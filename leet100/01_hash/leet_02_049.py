@@ -24,13 +24,13 @@ def test1():
 
 def test2():
     sn = Solution()
-    strs =  [""]
+    strs = [""]
     result = sn.groupAnagrams(strs)
     print(f'result: {result}, expected: [[""]]')
 
 def test3():
     sn = Solution()
-    strs =  ["a"]
+    strs = ["a"]
     result = sn.groupAnagrams(strs)
     print(f'result: {result}, expected: [["a"]]')
 

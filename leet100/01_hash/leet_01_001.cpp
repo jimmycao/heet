@@ -5,6 +5,37 @@
 
 #include "../../cpp/utils/str_tools.h"
 
+// 双指针
+class Solution {
+public:
+    std::vector<int> twoSum(std::vector<int>& nums, int target)
+    {
+        int len = nums.size();
+        std::vector<int> idxs(len);
+        for (int i = 0; i < len; i++) {
+            idxs[i] = i;
+        }
+
+        std::sort(idxs.begin(), idxs.end(), [&](int i, int j) {
+            return nums[i] < nums[j];
+        });
+
+        int left = 0;
+        int right = len - 1;
+        while (left < right) {
+            int sum = nums[idxs[left]] + nums[idxs[right]];
+            if (sum == target) {
+                return {idxs[left], idxs[right]};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return {};
+    }
+};
+
 // 双指针，暴力法
 class Solution1 {
 public:
@@ -40,7 +71,7 @@ public:
 };
 
 // 单指针，求差法，向后查
-class Solution {
+class Solution3 {
 public:
     std::vector<int> twoSum(std::vector<int>& nums, int target)
     {
