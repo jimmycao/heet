@@ -29,6 +29,7 @@ public:
     {
         for (int i = 0; i < nums.size(); ++i) {
             int diff = target - nums[i];
+            // 注意：这里要 nums.begin() + i + 1
             auto it = std::find(nums.begin() + i + 1, nums.end(), diff);
             if (it != nums.end()) {
                 return {i, (int)(it - nums.begin())};

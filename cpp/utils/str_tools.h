@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <set>
 
 class StringTools {
 public:
@@ -17,6 +18,22 @@ public:
             ss << nums[i] << ", ";
         }
         ss << nums[nums.size()-1] << "]";
+        return ss.str();
+    }
+
+    template <typename T>
+    static std::string ToString(const std::set<T>& nums)
+    {
+        if (nums.empty()) {
+            return "";
+        }
+        
+        std::stringstream ss;
+        ss << "[";
+        for (auto& num : nums) {
+            ss << num << ", ";
+        }
+        ss << "]";
         return ss.str();
     }
 
