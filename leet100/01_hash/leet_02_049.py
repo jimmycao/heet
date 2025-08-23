@@ -1,26 +1,41 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        orig2strs = {}
+from typing import List
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        sorted_2_list = {}
         for str in strs:
-            ss = ''.join(sorted(str))
-            if ss not in orig2strs:
-                orig2strs[ss] = []
-            orig2strs[ss].append(str)
+            sorted_str = "".join(sorted(str))
+            if sorted_str not in sorted_2_list:
+                sorted_2_list[sorted_str] = []  # sorted_2_list[sorted_str] = list()
+            sorted_2_list[sorted_str].append(str)
 
-        results = []
-        # for value in orig2strs.values():
-        #     results.append(value)
-        for key, value in orig2strs.items():
-            results.append(value)
+        result: List[List[str]] = []
+        for s in sorted_2_list.values():
+            result.append(s)
+        return result
 
-        return results
 
-if '__name__ == __main__':
-    s = Solution()
+def test1():
+    sn = Solution()
     strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-    results = s.groupAnagrams(strs)
-    print(results)
+    result = sn.groupAnagrams(strs)
+    print(f'result: {result}, expected: [["bat"],["nat","tan"],["ate","eat","tea"]]')
+
+
+def test2():
+    sn = Solution()
+    strs =  [""]
+    result = sn.groupAnagrams(strs)
+    print(f'result: {result}, expected: [[""]]')
+
+def test3():
+    sn = Solution()
+    strs =  ["a"]
+    result = sn.groupAnagrams(strs)
+    print(f'result: {result}, expected: [["a"]]')
+
+
+if __name__ == "__main__":
+    test1()
+    test2()
+    test3()
