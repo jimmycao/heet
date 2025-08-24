@@ -29,7 +29,7 @@ public:
     }
 };
 
-class Solution {
+class Solution2 {
 public:
     std::vector<std::vector<int>> threeSum(std::vector<int>& nums)
     {   
@@ -66,6 +66,41 @@ public:
             }
         }
 
+        return results;
+    }
+};
+
+class Solution {
+public:
+    std::vector<std::vector<int>> threeSum(std::vector<int>& nums)
+    {  
+        std::vector<std::vector<int>> results;
+        std::sort(nums.begin(), nums.end());
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+
+            int left = i + 1;
+            int right = nums.size() - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum == 0) {
+                    results.push_back({nums[i], nums[left], nums[right]});
+                    
+                    // left跳到下一个不等的值
+                    int left_value = nums[left];
+                    while (left < right && nums[left] == left_value) {
+                        left++;
+                    }
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
         return results;
     }
 };
