@@ -2,6 +2,7 @@
 #include <vector>
 #include <sstream>
 #include <set>
+#include <iostream>
 
 class StringTools {
 public:
